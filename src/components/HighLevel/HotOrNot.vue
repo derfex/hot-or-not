@@ -69,6 +69,10 @@ export default {
   },
 
   methods: {
+    extractCandidate() {
+      return this.candidates.shift();
+    },
+
     rememberSelection(candidate, answer) {
       this.processed[answer].push(candidate);
     },
@@ -88,6 +92,12 @@ export default {
       // Append additional candidates.
       const additionalCandidates = request.loadCandidates(countCandidates);
       this.candidates = this.candidates.concat(additionalCandidates);
+    },
+
+    makeChoice(answer) {
+      const candidate = this.extractCandidate();
+      this.rememberSelection(candidate, answer);
+      this.serve();
     },
   },
 };
