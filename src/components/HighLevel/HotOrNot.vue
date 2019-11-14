@@ -72,6 +72,23 @@ export default {
     rememberSelection(candidate, answer) {
       this.processed[answer].push(candidate);
     },
+
+    // `async` — hint.
+    async serve() {
+      if (this.candidates.length > 2) return;
+
+      // …
+      // Send processed data to business logic.
+      // …
+
+      // Reset processed.
+      this.processed.hot = [];
+      this.processed.not = [];
+
+      // Append additional candidates.
+      const additionalCandidates = request.loadCandidates(countCandidates);
+      this.candidates = this.candidates.concat(additionalCandidates);
+    },
   },
 };
 </script>
