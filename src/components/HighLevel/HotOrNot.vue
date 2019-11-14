@@ -18,6 +18,7 @@
           x-large
           block
           color="success"
+          @click="hot"
         >
           Hot
         </v-btn>
@@ -27,6 +28,7 @@
           x-large
           block
           color="error"
+          @click="not"
         >
           Not
         </v-btn>
@@ -98,6 +100,13 @@ export default {
       const candidate = this.extractCandidate();
       this.rememberSelection(candidate, answer);
       this.serve();
+    },
+
+    hot() {
+      this.makeChoice('hot');
+    },
+    not() {
+      this.makeChoice('not');
     },
   },
 };
