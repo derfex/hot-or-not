@@ -48,6 +48,10 @@ export default {
   data() {
     return {
       candidates: [],
+      processed: {
+        hot: [],
+        not: [],
+      },
     };
   },
 
@@ -62,6 +66,12 @@ export default {
 
   created() {
     this.candidates = request.loadCandidates(countCandidates);
+  },
+
+  methods: {
+    rememberSelection(candidate, answer) {
+      this.processed[answer].push(candidate);
+    },
   },
 };
 </script>
